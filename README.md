@@ -17,10 +17,11 @@ A drop-in, extremely simple, lightweight, and dependency-free PHP class to enabl
 
 ## Installation
 
-1. Create a folder named `inc` in your WordPress plugin directory and copy [updater.php](file:///Users/daniel/Development/wpfuse/postrider/inc/updater.php) into it.
+1. Copy the `updater.php` file into your WordPress plugin directory. You can place it in the root folder, or inside any subdirectory like `inc/`, `includes/`, etc.
 2. Require and instantiate the class in your main plugin file (e.g., `my-plugin.php`):
 
 ```php
+// Adjust the path according to where you placed the updater.php file
 require_once __DIR__ . '/inc/updater.php';
 
 // Instantiate the Auto Updater
