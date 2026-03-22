@@ -43,6 +43,7 @@ if( ! class_exists( 'WPFuse_GitHub_Updater' ) ) {
 			
 			add_filter( 'plugins_api', array( $this, 'info' ), 20, 3 );
 			add_filter( 'site_transient_update_plugins', array( $this, 'update' ) );
+			add_action( 'deleted_site_transient', array( $this, 'clear_cache' ) );
 			add_action( 'upgrader_process_complete', array( $this, 'purge' ), 10, 2 );
 			add_filter( 'upgrader_source_selection', array( $this, 'rename_github_dir' ), 10, 4 );
 			
@@ -225,6 +226,12 @@ if( ! class_exists( 'WPFuse_GitHub_Updater' ) ) {
 						delete_transient( $this->cache_key );
 					}
 				}
+			}
+		}
+		
+		public function clear_cache( $transient ) {
+			if ( 'update_plugins' === $transient ) {
+				delete_transient( $this->cache_key );
 			}
 		}
 	}
